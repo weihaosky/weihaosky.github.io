@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NeW CRFs estimates the depth from a single RGB image."/>
+    <title>NeW CRFs: Neural Window Fully-connected CRFs for Monocular Depth Estimation</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <style>
+      body {
+        background: #fdfcf9 no-repeat fixed top left;
+        font-family:'Open Sans', sans-serif;
+      }
+    </style>
+
+  </head>
+
+  <!-- cover -->
+  <section>
+    <div class="jumbotron text-center mt-0">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 style="font-size:30px;">NeW CRFs: Neural Window Fully-connected CRFs for Monocular Depth Estimation</h2>
+            <h4 style="color:#6e6e6e;"> CVPR 2022</h4>
+            <!-- <h5 style="color:#6e6e6e;"> (Oral Presentation and Best Paper Candidate)</h5> -->
+            <hr>
+            <h6> <a href="https://weihao-yuan.com/" target="_blank">Weihao Yuan</a>, 
+                 <a target="_blank">Xiaodong Gu</a>, 
+                <a target="_blank">Zuozhuo Dai</a>,
+                <a target="_blank">Siyu Zhu</a>,
+                <a target="_blank">Ping Tan</a></h6>
+            <p> Alibaba Group &nbsp;&nbsp; 
+                <!-- <sup>2</sup>Simon Fraser University -->
+                <br>
+            </p>
+            <!-- <p> <a class="btn btn-secondary btn-lg" href="" role="button">Paper</a> 
+                <a class="btn btn-secondary btn-lg" href="" role="button">Code</a> 
+                <a class="btn btn-secondary btn-lg" href="" role="button">Data</a> </p> -->
+
+            <div class="row justify-content-center">
+              <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://arxiv.org/abs/2203.01502" role="button"  target="_blank">
+                    <i class="fa fa-file"></i> Paper</a> </p>
+              </div>
+              <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" id="code_soon" href="" role="button" 
+                    target="_blank" disabled=1>
+                <i class="fa fa-github-alt"></i> Code </a> </p>
+              </div>
+              <!-- <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="" role="button"  target="_blank">
+                    <i class="fa fa-file"></i> Supplementary</a> </p>
+              </div> -->
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- abstract -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Abstract</h3>
+            <hr style="margin-top:0px">
+            <!-- <h6 style="color:#8899a5"> NeW CRFs estimates the depth from a single RGB image.</h6> -->
+            <!-- <video poster="images/header-vid-poster.png" width="70%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="" id="header_vid"> -->
+                   
+            <div><b style="color:#fd5638; font-size:large" id="demo-warning"></b>
+            <br>
+            </div>
+              <!-- <br><br> -->
+          <p class="text-justify">
+            Estimating the accurate depth from a single image is challenging since it is inherently ambiguous and ill-posed. While recent works design increasingly complicated and powerful networks to directly regress the depth map, we take the path of CRFs optimization. 
+            Due to the expensive computation, CRFs are usually performed between neighborhoods rather than the whole graph.
+            To leverage the potential of fully-connected CRFs, we split the input into windows and perform the FC-CRFs optimization within each window, which reduces the computation complexity and makes FC-CRFs feasible. 
+            To better capture the relationships between nodes in the graph, we exploit the multi-head attention mechanism to compute a multi-head potential function, which is fed to the networks to output an optimized depth map.
+            Then we build a bottom-up-top-down structure, where this neural window FC-CRFs module serves as the decoder, and a vision transformer serves as the encoder.
+            The experiments demonstrate that our method significantly improves the performance across all metrics on both the KITTI and NYUv2 datasets, compared to previous methods.
+            Furthermore, the proposed method can be directly applied to panorama images and outperforms all previous panorama methods on the MatterPort3D dataset. 
+          </p>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+
+  <!-- Performance -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <!-- <h3></h3> -->
+            <hr style="margin-top:0px">
+            <p>
+              <a href="https://paperswithcode.com/sota/monocular-depth-estimation-on-kitti-eigen?p=new-crfs-neural-window-fully-connected-crfs">
+                <img class="img-fluid" src="https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/new-crfs-neural-window-fully-connected-crfs/monocular-depth-estimation-on-kitti-eigen" alt="NeW CRFs">
+              </a> 
+            </p>
+            <p>
+              <a href="https://paperswithcode.com/sota/monocular-depth-estimation-on-nyu-depth-v2?p=new-crfs-neural-window-fully-connected-crfs">
+                <img class="img-fluid" src="https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/new-crfs-neural-window-fully-connected-crfs/monocular-depth-estimation-on-nyu-depth-v2" alt="NeW CRFs">
+              </a> 
+            </p>
+            <p>
+              <a href="http://www.cvlibs.net/datasets/kitti/eval_depth.php?benchmark=depth_prediction">
+                Rank 1st on the KITTI depth online benchmark from 14-10-2021 to now (04-03-2022):
+              </a>
+              <a href="http://www.cvlibs.net/datasets/kitti/eval_depth.php?benchmark=depth_prediction">
+                <img class="img-fluid" src="images/kitti_leaderboard.png" alt="KITTI learder board", width=50%>
+              </a> 
+            </p>
+            
+            
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+
+
+  <!-- NeW FC-CRFs -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Neural Window FC-CRFs</h3>
+            <hr style="margin-top:0px">
+            <img class="img-fluid" src="images/intro.png" alt="NeW CRFs" width=500>   
+            <hr style="margin-top:0px">
+            <p class="text-justify">
+              The neural window fully-connected CRFs take image feature $\mathcal{F}$ and upper-level prediction $X$ as input, and compute the fully-connected energy $E$ in each window, which is then fed to the networks to output an optimized depth map.
+            </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- Net overview -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Network structure</h3>
+            <hr style="margin-top:0px">
+            <img class="img-fluid" src="images/net.png" alt="NeW CRFs" width=800>   
+            <hr style="margin-top:0px">
+            <p class="text-justify">
+              Network structure of the proposed framework. The encoder first extracts the features in four levels.
+              A PPM head aggregates the global and local information and makes the initial prediction $X$ from the top image feature $\mathcal{F}$. 
+              Then in each level, the neural window fully-connected CRFs module builds multi-head energy from $X$ and $\mathcal{F}$, and optimizes it to a better prediction $X'$. 
+              Between each level a rearrange upscale is performed considering the sharpness and network weight.
+            </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- Point cloud visualization -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Point cloud visualization</h3>
+            <hr style="margin-top:0px">
+            <div>
+              <img class="img-fluid" src="images/nyu_app/bathroom_00508.jpg" width=20%>   
+              <img class="img-fluid" src="images/nyu_app/bathroom_00508_depth.jpg" width=20%>   
+              <img class="img-fluid" src="images/pcd/bathroom_00508_pcd.jpg" width=30%>   
+            </div><br>
+            <div>
+              <img class="img-fluid" src="images/nyu/bedroom_01077.jpg" width=20%>   
+              <img class="img-fluid" src="images/nyu/bedroom_01077_depth.jpg" width=20%>   
+              <img class="img-fluid" src="images/pcd/bedroom_01077_pcd.jpg" width=30%>  
+            </div><br>
+            <div>
+              <img class="img-fluid" src="images/pcd/bedroom_00170.jpg" width=20%>   
+              <img class="img-fluid" src="images/pcd/bedroom_00170_depth.jpg" width=20%>   
+              <img class="img-fluid" src="images/pcd/bedroom_00170_pcd.jpg" width=30%>  
+            </div><br>
+            <div>
+              <img class="img-fluid" src="images/pcd/office_00633.jpg" width=20%>   
+              <img class="img-fluid" src="images/pcd/office_00633_depth.jpg" width=20%>   
+              <img class="img-fluid" src="images/pcd/office_00633_pcd.jpg" width=30%>  
+            </div><br>
+            <div>
+              <img class="img-fluid" src="images/pcd/p44.jpg" width=35%>   
+              <img class="img-fluid" src="images/pcd/p44_depth.jpg" width=35%>   
+              <img class="img-fluid" src="images/pcd/p44_pcd1.jpg" width=31%>
+              <img class="img-fluid" src="images/pcd/p44_pcd2.jpg" width=39%>
+            </div><br>
+            <div>
+              <img class="img-fluid" src="images/pcd/p111.jpg" width=35%>   
+              <img class="img-fluid" src="images/pcd/p111_depth.jpg" width=35%>   
+              <img class="img-fluid" src="images/pcd/p111_pcd1.jpg" width=30.5%>
+              <img class="img-fluid" src="images/pcd/p111_pcd2.jpg" width=39.5%>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- citing -->
+  <div class="container">
+    <div class="row ">
+      <div class="col-12">
+          <h3>Citation</h3>
+          <hr style="margin-top:0px">
+              <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
+<code>@inproceedings{yuan2022newcrfs,
+  title={NeWCRFs: Neural Window Fully-connected CRFs for Monocular Depth Estimation},
+  author={Yuan, Weihao and Gu, Xiaodong and Dai, Zuozhuo and Zhu, Siyu and Tan, Ping},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  pages={},
+  year={2022}
+}
+</code></pre>
+          <hr>
+      </div>
+    </div>
+  </div>
+
+  <!-- ack -->
+  <!-- <div class="container">
+    <div class="row ">
+      <div class="col-12">
+          <h3>Acknowledgements</h3>
+          <hr style="margin-top:0px">
+          <p class="text-justify">
+            We would like to specially thank 
+          </p>
+      </div>
+    </div>
+  </div> -->
+
+  <footer class="text-center" style="margin-bottom:10px; font-size: medium;">
+      <hr>
+      Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the <a href="https://lioryariv.github.io/idr/" target="_blank">website template</a>.
+  </footer>
+
+  <script type="text/javascript">
+    function changePlaybackSpeed(speed)
+        {
+            document.getElementById('inspect_vid').playbackRate = speed;
+        }
+        // changePlaybackSpeed(0.25)
+
+    var demo = document.getElementById("header_vid");
+    var startTime;
+    var timeout = undefined;
+    demo.addEventListener("loadstart", function() {
+      startTime = Date.now();
+      timeout = setTimeout(function () {
+        var demoWarning = document.getElementById("demo-warning");
+        var giteeLink = document.createElement("a");
+        giteeLink.innerText = "mirror hosted in mainland China";
+        giteeLink.href = "https://project-pages-1255496016.cos-website.ap-shanghai.myqcloud.com/neuralrecon/";
+        // var bilibiliLink = document.createElement("a");
+        // var youtubeLink = document.createElement("a");
+        // bilibiliLink.innerText = "BiliBili";
+        // bilibiliLink.href = "";
+        // youtubeLink.innerText = "YouTube";
+        // youtubeLink.href = "";
+
+        demoWarning.append("Loading the videos took too long, you can optionally visit this site in the ", giteeLink, ".");
+        // demoWarning.append("Loading the video took too long, you can optionally watch it on Bilibili", bilibiliLink, " or YouTube", youtubeLink, ".");
+        clearTimeout(timeout);
+        timeout = undefined;
+      }, 6000);
+    });
+    demo.addEventListener("loadeddata", function() {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = undefined;
+      }
+    });
+//     var source = document.createElement("source");
+//     source.setAttribute("src", "/videos/web-scene2.m4v");
+//     source.setAttribute("type", "video/webm");
+//     demo.appendChild(source);
+  </script>
+  <script>
+    MathJax = {
+      tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</body>
+</html>
