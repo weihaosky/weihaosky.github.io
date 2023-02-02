@@ -43,7 +43,7 @@
 
             <div class="row justify-content-center">
               <div class="column">
-                  <p class="mb-5"><a class="btn btn-large btn-light" href="" role="button"  target="_blank">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://arxiv.org/abs/2301.13510" role="button"  target="_blank">
                     <i class="fa fa-file"></i> Paper</a> </p>
               </div>
               <div class="column">
@@ -94,6 +94,107 @@
     </div>
   </section>
   <br>
+
+
+  <!-- method -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Overview Pipeline</h3>
+            <hr style="margin-top:0px">
+            <img class="img-fluid" src="images/framework.png" alt="Framework" width=800>   
+            <hr style="margin-top:0px">
+            <p class="text-justify">
+              The overview of the 3D reconstruction framework. The input images are extracted to features by
+              a 2D backbone network, then the 2D features are back-projected and fused to 3D feature volumes, which are
+              aggregated by our 3D transformer and generate the reconstruction in a coarse-to-fine manner.
+            </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Network Structure</h3>
+            <hr style="margin-top:0px">
+            <img class="img-fluid" src="images/downup.png" alt="Network" width=300>   
+            <hr style="margin-top:0px">
+            <p class="text-justify">
+              The structure of the 3D transformer. “S-W-Attn” denotes sparse window attention.
+            </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Sparse Window Attention</h3>
+            <hr style="margin-top:0px">
+            <img class="img-fluid" src="images/attention.png" alt="Attention" width=800>   
+            <hr style="margin-top:0px">
+            <p class="text-justify">
+              (a) Illustration of the sparse window attention. For calculating the attention of the current voxel (in
+              orange), we first sparsify the volume using the occupancy prediction from the coarser level, and then search the
+              occupied voxels (in dark blue) within a small window. The attention is hence computed based on only these
+              neighbor occupied voxels. (b) Illustration of the dilate-attention in a 2D slice. We dilate the occupied voxels
+              and calculate the attention of these dilated voxels (in yellow) to maintain the geometry structure.
+            </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+
+  <!-- results -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Results</h3>
+            <hr style="margin-top:0px">
+            <img class="img-fluid" src="images/results1.png" alt="Results" width=800>   
+            <img class="img-fluid" src="images/metrics.png" alt="Results" width=800>  
+            <hr style="margin-top:0px">
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+
+  <!-- conclusion -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Discussions</h3>
+            <hr style="margin-top:0px">
+            <p class="text-justify">
+              Due to the volume representation, our framework is limited by the trade-off between the resolution
+              of the volume and the memory consumption.
+              The voxel size is set to 4 cm, such that the geometry details less than 4 cm are hard to be recovered.
+              A smaller voxel size would cost more memory, and obtain better reconstruction with more details.
+            </p>
+            <p class="text-justify">
+              In addition, this 3D transformer structure could be used to aggregate any 3D feature volume, thus it could
+              be applied to more 3D tasks in the future, such as 3D segmentation.
+            </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
 
   <!-- citing -->
   <div class="container">
